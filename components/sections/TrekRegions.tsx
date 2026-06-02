@@ -18,6 +18,14 @@ const TrekGlobe = dynamic(() => import("@/components/3d/TrekGlobe"), {
   ),
 });
 
+const regionGroups = [
+  { region: "Everest",    label: "Everest Region",    emoji: "🏔️" },
+  { region: "Annapurna", label: "Annapurna Region",   emoji: "⛰️" },
+  { region: "Langtang",  label: "Langtang Region",    emoji: "🌿" },
+  { region: "Manaslu",   label: "Manaslu Region",     emoji: "🗻" },
+  { region: "Restricted",label: "Restricted Areas",   emoji: "🔭" },
+];
+
 export default function TrekRegions() {
   const [region, setRegion] = useState<string | null>(null);
   const regionTreks = region ? treks.filter((t) => t.region === region) : [];
@@ -29,15 +37,63 @@ export default function TrekRegions() {
         <SectionHeading
           eyebrow="Interactive Map"
           title="Explore Nepal's Trek Regions"
-          subtitle="Scroll to zoom into Nepal, then click any pin to preview the base camp and dive into the full itinerary."
+          subtitle="Choose a region to preview base camps and dive into the full itinerary."
           tone="light"
         />
 
-        <div className="mt-10 h-[460px] w-full">
+        {/* ── Mobile: tap-friendly region cards ── */}
+        <div className="mt-10 grid grid-cols-2 gap-4 md:hidden">
+          {regionGroups.map((g) => {
+            const count = treks.filter((t) => t.region === g.region).length;
+            return (
+              <button
+                key={g.region}
+                onClick={() => setRegion(g.region)}
+                className="group rounded-2xl border border-snow/15 bg-green-900/60 p-5 text-left transition-all duration-200 active:scale-95 active:bg-green-900"
+              >
+                <span className="text-3xl">{g.emoji}</span>
+                <p className="mt-3 font-playfair text-lg font-bold leading-tight text-snow">
+                  {g.region}
+                </p>
+                <p className="font-montserrat text-[10px] uppercase tracking-widest text-snow/50">
+                  {g.label.split(" ").slice(1).join(" ")}
+                </p>
+                <div className="mt-3 flex items-end justify-between">
+                  <div>
+                    <span className="font-playfair text-3xl font-bold text-snow">{count}</span>
+                    <span className="ml-1 font-montserrat text-[10px] uppercase tracking-widest text-snow/50">
+                      treks
+                    </span>
+                  </div>
+                  <ArrowRight
+                    width={18}
+                    height={18}
+                    className="text-snow/40 transition-transform duration-200 group-active:translate-x-1"
+                  />
+                </div>
+              </button>
+            );
+          })}
+
+          {/* Full-width "View all treks" card */}
+          <Link
+            href="/treks"
+            className="col-span-2 flex items-center justify-between rounded-2xl border border-snow/15 bg-green-900/40 px-5 py-4 transition-all active:scale-95"
+          >
+            <span className="font-dm text-lg text-snow">Browse all treks</span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-snow/20 px-3 py-1.5 font-montserrat text-xs text-snow/70">
+              {treks.length} routes <ArrowRight width={13} height={13} />
+            </span>
+          </Link>
+        </div>
+
+        {/* ── Desktop: 3-D Globe ── */}
+        <div className="mt-10 hidden h-[460px] w-full md:block">
           <TrekGlobe onSelect={setRegion} />
         </div>
       </div>
 
+      {/* Region modal — shared between mobile cards and desktop globe */}
       <AnimatePresence>
         {region && (
           <motion.div
@@ -52,7 +108,7 @@ export default function TrekRegions() {
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.9, y: 20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg rounded-3xl border border-amber-400/20 bg-warm p-8 text-green-900 shadow-trek-lg"
+              className="w-full max-w-lg rounded-3xl border border-snow/10 bg-warm p-8 text-green-900 shadow-trek-lg"
             >
               <div className="flex items-start justify-between">
                 <div>
@@ -64,7 +120,7 @@ export default function TrekRegions() {
                 <button
                   onClick={() => setRegion(null)}
                   aria-label="Close"
-                  className="flex h-9 w-9 items-center justify-center rounded-full bg-stone-200 text-green-900 hover:bg-amber-400"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-stone-200 text-green-900 hover:bg-stone-300"
                 >
                   <CloseIcon width={18} height={18} />
                 </button>
@@ -75,10 +131,10 @@ export default function TrekRegions() {
                   <li key={t.slug}>
                     <Link
                       href={`/treks/${t.slug}`}
-                      className="flex items-center justify-between rounded-xl border border-stone-200 bg-snow px-4 py-3 transition-colors hover:border-amber-400 hover:bg-amber-400/10"
+                      className="flex items-center justify-between rounded-xl border border-stone-200 bg-snow px-4 py-3 transition-colors hover:border-green-600 hover:bg-green-600/5 active:scale-[0.99]"
                     >
                       <span className="font-dm text-lg">{t.name}</span>
-                      <span className="inline-flex items-center gap-2 font-montserrat text-sm text-amber-600">
+                      <span className="inline-flex items-center gap-2 font-montserrat text-sm text-green-700">
                         ${t.price.toLocaleString()}
                         <ArrowRight width={15} height={15} />
                       </span>

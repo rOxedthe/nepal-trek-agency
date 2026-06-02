@@ -2,7 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls, Html } from "@react-three/drei";
+import { OrbitControls, Html, Line } from "@react-three/drei";
 import * as THREE from "three";
 import { AnimatePresence, motion } from "framer-motion";
 import { treks } from "@/data/treks";
@@ -84,10 +84,12 @@ function TrailLines({ isZoomed }: { isZoomed: boolean }) {
       const f = REGION_MARKERS.find((m) => m.name === s.from)!;
       const t = REGION_MARKERS.find((m) => m.name === s.to)!;
       const pts = greatArc(f.lat, f.lon, t.lat, t.lon);
-      const mid = pts[Math.floor(pts.length / 2)].clone().multiplyScalar(1.18);
-      const curve = new THREE.CatmullRomCurve3(pts);
-      const geo = new THREE.TubeGeometry(curve, 56, 0.0065, 6, false);
-      return { geo, mid, km: s.km };
+      // Badge sits just above the arc midpoint (outward from sphere center)
+      const mid = pts[Math.floor(pts.length / 2)]
+        .clone()
+        .normalize()
+        .multiplyScalar(R + 0.09);
+      return { pts, mid, km: s.km };
     });
   }, []);
 
@@ -95,37 +97,37 @@ function TrailLines({ isZoomed }: { isZoomed: boolean }) {
     <>
       {segs.map((s, i) => (
         <group key={i}>
-          <mesh geometry={s.geo}>
-            <meshBasicMaterial
-              color="#FFFFFF"
-              transparent
-              opacity={isZoomed ? 0.18 : 0.52}
-            />
-          </mesh>
+          {/* Clean screen-space line — no chunky 3-D cylinder */}
+          <Line
+            points={s.pts}
+            color="#FFFFFF"
+            lineWidth={isZoomed ? 1 : 2}
+            transparent
+            opacity={isZoomed ? 0.28 : 0.65}
+          />
 
-          {/* Distance badge — only visible in far (unzoomed) view */}
-          {!isZoomed && (
-            <Html position={[s.mid.x, s.mid.y, s.mid.z]} center>
-              <div
-                style={{
-                  background: "rgba(26,5,8,0.9)",
-                  border: "1px solid rgba(255,255,255,0.32)",
-                  borderRadius: "999px",
-                  padding: "2px 9px",
-                  fontSize: "10px",
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: 600,
-                  color: "white",
-                  letterSpacing: "0.06em",
-                  whiteSpace: "nowrap",
-                  pointerEvents: "none",
-                  userSelect: "none",
-                }}
-              >
-                {s.km}
-              </div>
-            </Html>
-          )}
+          {/* Distance badge — always visible, dims when zoomed */}
+          <Html position={[s.mid.x, s.mid.y, s.mid.z]} center>
+            <div
+              style={{
+                background: "rgba(26,5,8,0.92)",
+                border: "1px solid rgba(255,255,255,0.32)",
+                borderRadius: "999px",
+                padding: "2px 9px",
+                fontSize: "10px",
+                fontFamily: "Montserrat, sans-serif",
+                fontWeight: 600,
+                color: "white",
+                letterSpacing: "0.06em",
+                whiteSpace: "nowrap",
+                pointerEvents: "none",
+                userSelect: "none",
+                opacity: isZoomed ? 0.45 : 1,
+              }}
+            >
+              {s.km}
+            </div>
+          </Html>
         </group>
       ))}
     </>
@@ -309,6 +311,25 @@ function GlobeMesh({
                   <meshBasicMaterial color="#6B8FFF" transparent opacity={0.4} side={THREE.DoubleSide} />
                 </mesh>
               )}
+
+              {/* Always-visible name tag */}
+              <Html center style={{ pointerEvents: "none" }}>
+                <div style={{
+                  transform: "translateY(-20px)",
+                  fontSize: "9px",
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 600,
+                  color: active ? "#C5D5FF" : "rgba(255,255,255,0.75)",
+                  whiteSpace: "nowrap",
+                  background: "rgba(26,5,8,0.82)",
+                  padding: "1px 6px",
+                  borderRadius: "4px",
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}>
+                  {pin.label}
+                </div>
+              </Html>
 
               {/* Invisible hit sphere — stays at natural size for easy clicking */}
               <mesh

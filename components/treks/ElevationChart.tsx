@@ -27,8 +27,8 @@ export default function ElevationChart({ itinerary }: { itinerary: ItineraryDay[
       <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full min-w-[560px]">
         <defs>
           <linearGradient id="elev" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#f5b245" stopOpacity={0.45} />
-            <stop offset="100%" stopColor="#f5b245" stopOpacity={0.02} />
+            <stop offset="0%" stopColor="#DC143C" stopOpacity={0.45} />
+            <stop offset="100%" stopColor="#DC143C" stopOpacity={0.02} />
           </linearGradient>
         </defs>
 
@@ -37,7 +37,7 @@ export default function ElevationChart({ itinerary }: { itinerary: ItineraryDay[
           const val = Math.round(max - g * range);
           return (
             <g key={g}>
-              <line x1={padX} y1={y} x2={W - padX} y2={y} stroke="#ece7df" strokeWidth={1} />
+              <line x1={padX} y1={y} x2={W - padX} y2={y} stroke="#EDE0E0" strokeWidth={1} />
               <text x={6} y={y + 4} className="fill-stone-500" fontSize={10}>
                 {val}m
               </text>
@@ -56,7 +56,7 @@ export default function ElevationChart({ itinerary }: { itinerary: ItineraryDay[
         <motion.polyline
           points={line}
           fill="none"
-          stroke="#c8852a"
+          stroke="#C8102E"
           strokeWidth={2.5}
           strokeLinejoin="round"
           strokeLinecap="round"
@@ -67,7 +67,7 @@ export default function ElevationChart({ itinerary }: { itinerary: ItineraryDay[
         />
         {points.map((p, i) => (
           <g key={i}>
-            <circle cx={p.x} cy={p.y} r={3} fill="#2d5a2d" />
+            <circle cx={p.x} cy={p.y} r={3} fill="#890020" />
             {i === points.findIndex((q) => q.d.altitude === max) && (
               <text x={p.x} y={p.y - 8} textAnchor="middle" fontSize={10} className="fill-green-900" fontWeight="bold">
                 {max.toLocaleString()}m

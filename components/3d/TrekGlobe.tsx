@@ -138,7 +138,7 @@ function GlobeMesh({
       <mesh>
         <sphereGeometry args={[R, 64, 64]} />
         <meshStandardMaterial
-          color={isZoomed ? "#2a5218" : "#1f3d1f"}
+          color={isZoomed ? "#8B0020" : "#6B0019"}
           roughness={0.85}
           metalness={0.1}
         />
@@ -148,7 +148,7 @@ function GlobeMesh({
       <mesh>
         <sphereGeometry args={[R + 0.006, isZoomed ? 48 : 24, isZoomed ? 32 : 16]} />
         <meshBasicMaterial
-          color={isZoomed ? "#4aaa3a" : "#3a7a3a"}
+          color={isZoomed ? "#DC143C" : "#A80026"}
           wireframe
           transparent
           opacity={isZoomed ? 0.28 : 0.22}
@@ -167,7 +167,7 @@ function GlobeMesh({
       {!isZoomed && (
         <mesh position={toVec(28.2, 84.5, R + 0.02)}>
           <sphereGeometry args={[0.32, 24, 24]} />
-          <meshBasicMaterial color="#f5b245" transparent opacity={0.28} />
+          <meshBasicMaterial color="#DC143C" transparent opacity={0.25} />
         </mesh>
       )}
 
@@ -183,16 +183,16 @@ function GlobeMesh({
                 onClick={(e) => { e.stopPropagation(); onRegionSelect(m.name); }}
               >
                 <sphereGeometry args={[active ? pinRHov : pinR, 16, 16]} />
-                <meshBasicMaterial color={active ? "#f9c96a" : "#f5b245"} />
+                <meshBasicMaterial color={active ? "#6B8FFF" : "#4169E1"} />
               </mesh>
               {active && (
                 <Html center style={{ pointerEvents: "none" }}>
                   <div style={{
                     fontSize: "11px", fontWeight: 700, whiteSpace: "nowrap",
-                    background: "#f5b245", color: "#1a3a1a", padding: "3px 8px",
+                    background: "#003893", color: "#ffffff", padding: "3px 8px",
                     borderRadius: "999px", fontFamily: "Montserrat, sans-serif",
                     pointerEvents: "none", userSelect: "none",
-                    boxShadow: "0 2px 6px rgba(0,0,0,0.25)",
+                    boxShadow: "0 2px 6px rgba(0,0,0,0.35)",
                   }}>
                     {m.name}
                   </div>
@@ -215,14 +215,14 @@ function GlobeMesh({
               {/* Visual sphere */}
               <mesh>
                 <sphereGeometry args={[pinR, 14, 14]} />
-                <meshBasicMaterial color={active ? "#ffdd60" : "#f5b245"} />
+                <meshBasicMaterial color={active ? "#6B8FFF" : "#4169E1"} />
               </mesh>
 
               {/* Glow ring on hover */}
               {active && (
                 <mesh>
                   <ringGeometry args={[0.09, 0.12, 20]} />
-                  <meshBasicMaterial color="#ffdd60" transparent opacity={0.4} side={THREE.DoubleSide} />
+                  <meshBasicMaterial color="#6B8FFF" transparent opacity={0.4} side={THREE.DoubleSide} />
                 </mesh>
               )}
 
@@ -257,17 +257,17 @@ function BaseCampModal({ trek, onClose }: { trek: (typeof treks)[0]; onClose: ()
         animate={{ scale: 1, y: 0 }}
         exit={{ scale: 0.88, y: 18 }}
         transition={{ type: "spring", stiffness: 300, damping: 24 }}
-        className="relative mx-4 w-full max-w-[320px] overflow-hidden rounded-2xl bg-green-950 shadow-2xl"
+        className="relative mx-4 w-full max-w-[320px] overflow-hidden rounded-2xl bg-green-900 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden">
           <img src={trek.image} alt={trek.name} className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-green-900 via-green-900/20 to-transparent" />
           <button onClick={onClose}
             className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm hover:bg-black/70 transition-colors">
             <CloseIcon width={16} height={16} />
           </button>
-          <span className="absolute left-3 top-3 rounded-full bg-amber-400 px-2.5 py-0.5 font-montserrat text-[10px] font-bold text-green-900">
+          <span className="absolute left-3 top-3 rounded-full bg-snow px-2.5 py-0.5 font-montserrat text-[10px] font-bold text-green-900">
             {trek.difficulty}
           </span>
         </div>
@@ -285,7 +285,7 @@ function BaseCampModal({ trek, onClose }: { trek: (typeof treks)[0]; onClose: ()
             <span className="font-semibold text-amber-300">From ${trek.price.toLocaleString()}</span>
           </div>
           <Link href={`/treks/${trek.slug}`}
-            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-amber-400 py-2.5 font-montserrat text-xs font-bold text-green-900 hover:bg-amber-300 transition-colors">
+            className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-snow py-2.5 font-montserrat text-xs font-bold text-green-900 hover:bg-stone-100 transition-colors">
             View Full Itinerary <ArrowRight width={14} height={14} />
           </Link>
         </div>
@@ -333,12 +333,12 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
             transition={{ delay: 0.6 }}
             className="pointer-events-none absolute bottom-5 left-1/2 z-10 -translate-x-1/2 flex items-center gap-2 rounded-full bg-green-900/75 px-4 py-2 backdrop-blur-sm"
           >
-            <svg width="14" height="20" viewBox="0 0 14 20" fill="none" className="text-amber-300">
+            <svg width="14" height="20" viewBox="0 0 14 20" fill="none" className="text-snow/70">
               <rect x="1" y="1" width="12" height="18" rx="6" stroke="currentColor" strokeWidth="1.5" />
               <motion.rect x="5.5" y="4" width="3" height="5" rx="1.5" fill="currentColor"
                 animate={{ y: [4, 8, 4] }} transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }} />
             </svg>
-            <span className="font-montserrat text-[11px] text-amber-200">Scroll to zoom into Nepal</span>
+            <span className="font-montserrat text-[11px] text-snow/80">Scroll to zoom into Nepal</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -349,7 +349,7 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
           <motion.button
             initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }}
             onClick={zoomOut}
-            className="absolute left-4 top-4 z-20 flex items-center gap-1.5 rounded-full bg-green-900/90 px-3 py-1.5 font-montserrat text-[11px] text-amber-200 backdrop-blur-sm hover:bg-green-800 transition-colors"
+            className="absolute left-4 top-4 z-20 flex items-center gap-1.5 rounded-full bg-green-900/90 px-3 py-1.5 font-montserrat text-[11px] text-snow/80 backdrop-blur-sm hover:bg-green-800 transition-colors"
           >
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -366,9 +366,9 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
             initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 6 }}
             className="pointer-events-none absolute bottom-5 left-1/2 z-20 -translate-x-1/2 flex items-center gap-3 rounded-full bg-green-900/90 px-4 py-2 backdrop-blur-sm"
           >
-            <span className="h-2 w-2 rounded-full bg-amber-400" />
-            <span className="font-montserrat text-[11px] font-semibold text-amber-200">{hoveredPin.label}</span>
-            <span className="font-montserrat text-[10px] text-amber-400/70">{hoveredPin.alt.toLocaleString()} m · click to view</span>
+            <span className="h-2 w-2 rounded-full bg-sky-200" />
+            <span className="font-montserrat text-[11px] font-semibold text-snow">{hoveredPin.label}</span>
+            <span className="font-montserrat text-[10px] text-snow/60">{hoveredPin.alt.toLocaleString()} m · click to view</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -376,7 +376,7 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
       {/* 3-D Canvas */}
       <Canvas camera={{ position: [0, 0, FAR_Z], fov: FAR_FOV }} dpr={[1, 1.8]} gl={{ alpha: true }}>
         <ambientLight intensity={0.8} />
-        <directionalLight position={[5, 3, 5]} intensity={1.4} color="#ffe6c0" />
+        <directionalLight position={[5, 3, 5]} intensity={1.4} color="#FFE0E0" />
         <CameraRig zoomRef={zoomRef} controlsRef={controlsRef} />
         <GlobeMesh
           zoomRef={zoomRef}

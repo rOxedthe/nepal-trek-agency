@@ -59,7 +59,7 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 rounded-xl bg-amber-400/10 px-4 py-3 font-montserrat text-xs text-amber-200">
+              <div className="mt-6 rounded-xl bg-green-700/10 px-4 py-3 font-montserrat text-xs text-green-700">
                 ⚡ We typically respond within 2 hours.
               </div>
             </div>

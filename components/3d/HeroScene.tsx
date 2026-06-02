@@ -73,7 +73,7 @@ function SnowField({ count = 450 }: { count?: number }) {
           count={count}
         />
       </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.05} transparent opacity={0.85} sizeAttenuation />
+      <pointsMaterial color="#4488FF" size={0.05} transparent opacity={0.85} sizeAttenuation />
     </points>
   );
 }
@@ -106,14 +106,14 @@ export default function HeroScene() {
       gl={{ antialias: true, alpha: true }}
       className="!absolute inset-0"
     >
-      <color attach="background" args={["#13230f"]} />
-      <fogExp2 attach="fog" args={["#1a2e1a", 0.06]} />
-      <ambientLight intensity={0.7} color="#ffd4a0" />
-      <directionalLight position={[6, 8, 4]} intensity={1.5} color="#ffe0b0" />
-      <directionalLight position={[-6, 4, -2]} intensity={0.5} color="#9fc6ff" />
+      <color attach="background" args={["#1A0508"]} />
+      <fogExp2 attach="fog" args={["#2D0810", 0.06]} />
+      <ambientLight intensity={0.7} color="#FFD0D0" />
+      <directionalLight position={[6, 8, 4]} intensity={1.5} color="#FFE0E0" />
+      <directionalLight position={[-6, 4, -2]} intensity={0.5} color="#C0D0FF" />
 
-      <Terrain color="#24471f" z={0} />
-      <Terrain color="#1c3a1a" z={-5} />
+      <Terrain color="#3D0A14" z={0} />
+      <Terrain color="#2A0610" z={-5} />
       <SnowField />
       <Rig />
     </Canvas>

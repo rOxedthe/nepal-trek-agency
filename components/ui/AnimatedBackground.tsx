@@ -29,8 +29,8 @@ export default function AnimatedBackground({
   className = "",
   tone = "dark",
 }: Props) {
-  const stroke = tone === "dark" ? "#1a2e1a" : "#f8f6f0";
-  const accent = "#c8852a";
+  const stroke = tone === "dark" ? "#4D0014" : "#f8f6f0";
+  const accent = "#003893";
 
   return (
     <div
@@ -85,7 +85,7 @@ function Snow({ tone }: { tone: "light" | "dark" }) {
       })),
     [],
   );
-  const color = tone === "dark" ? "#1a2e1a" : "#ffffff";
+  const color = "#4488FF";
   return (
     <>
       {flakes.map((f, i) => (
@@ -108,11 +108,11 @@ function Snow({ tone }: { tone: "light" | "dark" }) {
 }
 
 function Flags() {
-  const colors = ["#c8852a", "#2d5a2d", "#e09a38", "#4a9e4a", "#9c6b3a"];
+  const colors = ["#DC143C", "#003893", "#F07080", "#4169E1", "#8B0020"];
   const flags = Array.from({ length: 14 });
   return (
     <svg className="absolute left-0 top-6 w-full" viewBox="0 0 1200 90" preserveAspectRatio="none">
-      <path d="M0 18 Q600 64 1200 18" stroke="#3d3530" strokeWidth={1.4} fill="none" opacity={0.3} />
+      <path d="M0 18 Q600 64 1200 18" stroke="#3D2222" strokeWidth={1.4} fill="none" opacity={0.3} />
       {flags.map((_, i) => {
         const x = 40 + i * 82;
         const y = 22 + Math.sin(i) * 10;
@@ -237,7 +237,7 @@ function Pines({ stroke }: { stroke: string }) {
 }
 
 function Clouds({ tone }: { tone: "light" | "dark" }) {
-  const fill = tone === "dark" ? "#1a2e1a" : "#ffffff";
+  const fill = tone === "dark" ? "#4D0014" : "#ffffff";
   const clouds = [
     { top: "8%", dur: 60, delay: 0, scale: 1 },
     { top: "22%", dur: 90, delay: -20, scale: 0.7 },

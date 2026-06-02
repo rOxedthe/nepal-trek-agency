@@ -41,11 +41,11 @@ export interface Trek {
 }
 
 export const difficultyColor: Record<Difficulty, string> = {
-  Easy: "bg-green-600/90 text-snow",
-  "Easy-Moderate": "bg-green-600/90 text-snow",
-  Moderate: "bg-amber-500/95 text-green-900",
-  "Moderate-Hard": "bg-amber-600/95 text-snow",
-  Strenuous: "bg-earth-700/95 text-snow",
+  Easy: "bg-sky-200/90 text-stone-900",
+  "Easy-Moderate": "bg-sky-100/90 text-stone-900",
+  Moderate: "bg-amber-400/90 text-snow",
+  "Moderate-Hard": "bg-amber-600/90 text-snow",
+  Strenuous: "bg-green-900/95 text-snow",
 };
 
 const img = (id: string, w = 1200) =>

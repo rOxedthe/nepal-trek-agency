@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -48,6 +48,87 @@ function toVec(lat: number, lon: number, r = R) {
     -r * Math.sin(phi) * Math.cos(theta),
     r * Math.cos(phi),
     r * Math.sin(phi) * Math.sin(theta),
+  );
+}
+
+/* ─── Trail segments between region markers (west → east) ──────── */
+const TRAIL_SEGMENTS = [
+  { from: "Annapurna", to: "Manaslu",  km: "150 km" },
+  { from: "Manaslu",   to: "Langtang", km: "120 km" },
+  { from: "Langtang",  to: "Everest",  km: "230 km" },
+];
+
+function greatArc(
+  lat1: number, lon1: number,
+  lat2: number, lon2: number,
+  n = 56,
+  elevation = 0.022,
+): THREE.Vector3[] {
+  const v1 = toVec(lat1, lon1, R);
+  const v2 = toVec(lat2, lon2, R);
+  const pts: THREE.Vector3[] = [];
+  for (let i = 0; i <= n; i++) {
+    pts.push(
+      new THREE.Vector3()
+        .lerpVectors(v1, v2, i / n)
+        .normalize()
+        .multiplyScalar(R + elevation),
+    );
+  }
+  return pts;
+}
+
+function TrailLines({ isZoomed }: { isZoomed: boolean }) {
+  const segs = useMemo(() => {
+    return TRAIL_SEGMENTS.map((s) => {
+      const f = REGION_MARKERS.find((m) => m.name === s.from)!;
+      const t = REGION_MARKERS.find((m) => m.name === s.to)!;
+      const pts = greatArc(f.lat, f.lon, t.lat, t.lon);
+      const mid = pts[Math.floor(pts.length / 2)].clone().multiplyScalar(1.18);
+      const curve = new THREE.CatmullRomCurve3(pts);
+      const geo = new THREE.TubeGeometry(curve, 56, 0.0065, 6, false);
+      return { geo, mid, km: s.km };
+    });
+  }, []);
+
+  return (
+    <>
+      {segs.map((s, i) => (
+        <group key={i}>
+          <mesh geometry={s.geo}>
+            <meshBasicMaterial
+              color="#FFFFFF"
+              transparent
+              opacity={isZoomed ? 0.18 : 0.52}
+            />
+          </mesh>
+
+          {/* Distance badge — only visible in far (unzoomed) view */}
+          {!isZoomed && (
+            <Html position={[s.mid.x, s.mid.y, s.mid.z]} center>
+              <div
+                style={{
+                  background: "rgba(26,5,8,0.9)",
+                  border: "1px solid rgba(255,255,255,0.32)",
+                  borderRadius: "999px",
+                  padding: "2px 9px",
+                  fontSize: "10px",
+                  fontFamily: "Montserrat, sans-serif",
+                  fontWeight: 600,
+                  color: "white",
+                  letterSpacing: "0.06em",
+                  whiteSpace: "nowrap",
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}
+              >
+                {s.km}
+              </div>
+            </Html>
+          )}
+        </group>
+      ))}
+    </>
   );
 }
 
@@ -143,6 +224,9 @@ function GlobeMesh({
           metalness={0.1}
         />
       </mesh>
+
+      {/* Trail lines between region markers */}
+      <TrailLines isZoomed={isZoomed} />
 
       {/* Grid — denser when zoomed in for map feel */}
       <mesh>

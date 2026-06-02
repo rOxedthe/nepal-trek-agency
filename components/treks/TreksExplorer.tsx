@@ -123,7 +123,7 @@ export default function TreksExplorer() {
         {filtered.length === 0 && (
           <div className="rounded-3xl border border-dashed border-stone-300 py-20 text-center">
             <p className="font-playfair text-2xl text-green-900">No treks match those filters</p>
-            <button onClick={reset} className="btn btn-amber mt-6">Reset filters</button>
+            <button onClick={reset} className="btn btn-green mt-6">Reset filters</button>
           </div>
         )}
       </div>
@@ -150,7 +150,7 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-amber-400"
+        className="w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-green-600"
       >
         {options.map((o) => (
           <option key={o} value={o}>

@@ -100,7 +100,7 @@ export default function ContactForm() {
               </select>
             </Field>
 
-            <button type="submit" disabled={submitting} className="btn btn-amber w-full">
+            <button type="submit" disabled={submitting} className="btn btn-green w-full">
               {submitting ? (
                 <>
                   <span className="h-4 w-4 animate-spin rounded-full border-2 border-green-900/30 border-t-green-900" />
@@ -118,7 +118,7 @@ export default function ContactForm() {
 }
 
 const cls =
-  "mt-2 w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-amber-400";
+  "mt-2 w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-green-600";
 
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (

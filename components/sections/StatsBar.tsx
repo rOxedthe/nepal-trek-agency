@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import CountUp from "@/components/ui/CountUp";
-import AnimatedBackground from "@/components/ui/AnimatedBackground";
 
 const stats = [
   { end: 1000, suffix: "+", label: "Treks Completed" },
@@ -14,7 +13,6 @@ const stats = [
 export default function StatsBar() {
   return (
     <section className="relative overflow-hidden bg-green-900 py-16">
-      <AnimatedBackground variant="contours" tone="light" />
       <div className="container-trek relative z-10 grid grid-cols-2 gap-8 px-6 md:grid-cols-4 md:px-12">
         {stats.map((s, i) => (
           <motion.div

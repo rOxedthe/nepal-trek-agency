@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -29,6 +29,19 @@ const regionGroups = [
 export default function TrekRegions() {
   const [region, setRegion] = useState<string | null>(null);
   const regionTreks = region ? treks.filter((t) => t.region === region) : [];
+  const [globeReady, setGlobeReady] = useState(false);
+  const globeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = globeRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setGlobeReady(true); },
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <section className="relative overflow-hidden bg-green-800 section-pad text-snow">
@@ -86,9 +99,9 @@ export default function TrekRegions() {
           </Link>
         </div>
 
-        {/* ── Desktop: 3-D Globe with trail lines ── */}
-        <div className="mt-10 hidden h-[460px] w-full md:block">
-          <TrekGlobe onSelect={setRegion} />
+        {/* ── Desktop: 3-D Globe — only mounts when scrolled into view ── */}
+        <div ref={globeRef} className="mt-10 hidden h-[460px] w-full md:block">
+          {globeReady && <TrekGlobe onSelect={setRegion} />}
         </div>
       </div>
 

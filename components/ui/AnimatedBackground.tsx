@@ -76,7 +76,7 @@ function Mountains({ stroke, accent }: { stroke: string; accent: string }) {
 function Snow({ tone }: { tone: "light" | "dark" }) {
   const flakes = useMemo(
     () =>
-      Array.from({ length: 36 }).map((_, i) => ({
+      Array.from({ length: 18 }).map((_, i) => ({
         left: Math.random() * 100,
         size: 2 + Math.random() * 4,
         dur: 9 + Math.random() * 12,
@@ -135,7 +135,7 @@ function Contours({ stroke }: { stroke: string }) {
   return (
     <svg className="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 600 600">
       <g fill="none" stroke={stroke} strokeWidth={1.2} style={{ opacity: 0.07 }}>
-        {Array.from({ length: 7 }).map((_, i) => (
+        {Array.from({ length: 4 }).map((_, i) => (
           <ellipse
             key={i}
             cx="300"

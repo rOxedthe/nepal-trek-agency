@@ -22,6 +22,14 @@ function AnaglyphImage({ src, alt }: { src: string; alt: string }) {
   const [hover, setHover] = useState(false);
   const off = hover ? 11 : 4.5;
   const spring = { type: "spring" as const, stiffness: 120, damping: 14 };
+  // Single image on mobile — anaglyph doubles GPU/memory load on small screens
+  if (typeof window !== "undefined" && window.innerWidth < 640) {
+    return (
+      <div className="absolute inset-0 overflow-hidden bg-black">
+        <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" draggable={false} />
+      </div>
+    );
+  }
   return (
     <div
       className="absolute inset-0 overflow-hidden bg-black"

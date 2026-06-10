@@ -15,7 +15,7 @@ function noise(x: number, y: number) {
 
 function Terrain({ color, z = 0 }: { color: string; z?: number }) {
   const geometry = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(16, 8, 48, 24);
+    const geo = new THREE.PlaneGeometry(16, 8, 32, 16);
     const pos = geo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
@@ -39,7 +39,7 @@ function Terrain({ color, z = 0 }: { color: string; z?: number }) {
   );
 }
 
-function SnowField({ count = 180 }: { count?: number }) {
+function SnowField({ count = 120 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);

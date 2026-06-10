@@ -481,7 +481,7 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
       </AnimatePresence>
 
       {/* 3-D Canvas */}
-      <Canvas camera={{ position: [0, 0, FAR_Z], fov: FAR_FOV }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: false }}>
+      <Canvas camera={{ position: [0, 0, FAR_Z], fov: FAR_FOV }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: false }} performance={{ min: 0.5 }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 3, 5]} intensity={1.4} color="#FFE0E0" />
         <CameraRig zoomRef={zoomRef} controlsRef={controlsRef} />

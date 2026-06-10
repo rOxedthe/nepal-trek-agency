@@ -26,7 +26,7 @@ export default function ReviewCard({ review, index = 0 }: { review: Review; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.55, delay: (index % 3) * 0.08 }}
-      className="flex h-full flex-col rounded-2xl border border-stone-200 bg-warm p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-trek"
+      className="flex h-full flex-col rounded-2xl border border-stone-200 bg-warm p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-600/60 hover:shadow-trek"
     >
       <div className="flex items-center gap-4">
         <div className="flex h-12 w-12 flex-none items-center justify-center rounded-full bg-green-700 font-montserrat text-sm font-bold text-snow">

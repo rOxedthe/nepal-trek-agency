@@ -15,7 +15,7 @@ function noise(x: number, y: number) {
 
 function Terrain({ color, z = 0 }: { color: string; z?: number }) {
   const geometry = useMemo(() => {
-    const geo = new THREE.PlaneGeometry(16, 8, 120, 60);
+    const geo = new THREE.PlaneGeometry(16, 8, 48, 24);
     const pos = geo.attributes.position;
     for (let i = 0; i < pos.count; i++) {
       const x = pos.getX(i);
@@ -39,7 +39,7 @@ function Terrain({ color, z = 0 }: { color: string; z?: number }) {
   );
 }
 
-function SnowField({ count = 450 }: { count?: number }) {
+function SnowField({ count = 180 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -102,8 +102,8 @@ export default function HeroScene() {
   return (
     <Canvas
       camera={{ position: [0, 1.6, 7], fov: 55 }}
-      dpr={[1, 1.6]}
-      gl={{ antialias: true, alpha: true }}
+      dpr={[1, 1.4]}
+      gl={{ antialias: false, alpha: true }}
       className="!absolute inset-0"
     >
       <color attach="background" args={["#1A0508"]} />

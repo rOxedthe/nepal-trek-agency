@@ -47,7 +47,7 @@ export default function WhyUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group rounded-3xl border border-stone-200 bg-snow p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-400 hover:shadow-trek"
+              className="group rounded-3xl border border-stone-200 bg-snow p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-green-600 hover:shadow-trek"
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-700 text-amber-300 transition-transform duration-500 group-hover:rotate-[18deg] group-hover:scale-110">
                 <v.Icon width={28} height={28} />

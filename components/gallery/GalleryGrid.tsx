@@ -27,7 +27,7 @@ export default function GalleryGrid() {
               className={`rounded-full px-5 py-2 font-montserrat text-sm font-medium transition-all duration-300 ${
                 active === cat
                   ? "bg-green-700 text-snow shadow-trek"
-                  : "border border-stone-200 bg-snow text-stone-800 hover:border-amber-400 hover:text-amber-600"
+                  : "border border-stone-200 bg-snow text-stone-800 hover:border-green-600 hover:text-amber-600"
               }`}
             >
               {cat}

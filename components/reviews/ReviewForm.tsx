@@ -186,7 +186,7 @@ export default function ReviewForm() {
                     <button
                       type="button"
                       onClick={() => fileRef.current?.click()}
-                      className="rounded-xl border border-dashed border-stone-300 bg-warm px-5 py-3 font-montserrat text-sm text-stone-500 transition-colors hover:border-amber-400 hover:text-amber-600"
+                      className="rounded-xl border border-dashed border-stone-300 bg-warm px-5 py-3 font-montserrat text-sm text-stone-500 transition-colors hover:border-green-600 hover:text-amber-600"
                     >
                       Choose image
                     </button>
@@ -223,7 +223,7 @@ export default function ReviewForm() {
 }
 
 function inputCls(error?: string) {
-  return `mt-2 w-full rounded-xl border bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-amber-400 ${
+  return `mt-2 w-full rounded-xl border bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none transition-colors focus:border-green-600 ${
     error ? "border-red-400" : "border-stone-200"
   }`;
 }

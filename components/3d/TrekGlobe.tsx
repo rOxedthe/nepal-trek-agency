@@ -61,7 +61,7 @@ const TRAIL_SEGMENTS = [
 function greatArc(
   lat1: number, lon1: number,
   lat2: number, lon2: number,
-  n = 56,
+  n = 28,
   elevation = 0.022,
 ): THREE.Vector3[] {
   const v1 = toVec(lat1, lon1, R);
@@ -219,7 +219,7 @@ function GlobeMesh({
     <group ref={group}>
       {/* Sphere */}
       <mesh>
-        <sphereGeometry args={[R, 64, 64]} />
+        <sphereGeometry args={[R, 36, 36]} />
         <meshStandardMaterial
           color={isZoomed ? "#8B0020" : "#6B0019"}
           roughness={0.85}
@@ -232,7 +232,7 @@ function GlobeMesh({
 
       {/* Grid — denser when zoomed in for map feel */}
       <mesh>
-        <sphereGeometry args={[R + 0.006, isZoomed ? 48 : 24, isZoomed ? 32 : 16]} />
+        <sphereGeometry args={[R + 0.006, 24, 16]} />
         <meshBasicMaterial
           color={isZoomed ? "#DC143C" : "#A80026"}
           wireframe
@@ -312,24 +312,26 @@ function GlobeMesh({
                 </mesh>
               )}
 
-              {/* Always-visible name tag */}
-              <Html center style={{ pointerEvents: "none" }}>
-                <div style={{
-                  transform: "translateY(-20px)",
-                  fontSize: "9px",
-                  fontFamily: "Montserrat, sans-serif",
-                  fontWeight: 600,
-                  color: active ? "#C5D5FF" : "rgba(255,255,255,0.75)",
-                  whiteSpace: "nowrap",
-                  background: "rgba(26,5,8,0.82)",
-                  padding: "1px 6px",
-                  borderRadius: "4px",
-                  pointerEvents: "none",
-                  userSelect: "none",
-                }}>
-                  {pin.label}
-                </div>
-              </Html>
+              {/* Name tag — only when hovered */}
+              {active && (
+                <Html center style={{ pointerEvents: "none" }}>
+                  <div style={{
+                    transform: "translateY(-20px)",
+                    fontSize: "9px",
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 600,
+                    color: "#C5D5FF",
+                    whiteSpace: "nowrap",
+                    background: "rgba(26,5,8,0.92)",
+                    padding: "1px 6px",
+                    borderRadius: "4px",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                  }}>
+                    {pin.label}
+                  </div>
+                </Html>
+              )}
 
               {/* Invisible hit sphere — stays at natural size for easy clicking */}
               <mesh
@@ -479,7 +481,7 @@ export default function TrekGlobe({ onSelect }: { onSelect?: (name: string) => v
       </AnimatePresence>
 
       {/* 3-D Canvas */}
-      <Canvas camera={{ position: [0, 0, FAR_Z], fov: FAR_FOV }} dpr={[1, 1.8]} gl={{ alpha: true }}>
+      <Canvas camera={{ position: [0, 0, FAR_Z], fov: FAR_FOV }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: false }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[5, 3, 5]} intensity={1.4} color="#FFE0E0" />
         <CameraRig zoomRef={zoomRef} controlsRef={controlsRef} />

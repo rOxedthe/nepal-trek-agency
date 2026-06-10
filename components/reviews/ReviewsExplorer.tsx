@@ -70,7 +70,7 @@ function Field({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none focus:border-amber-400"
+        className="w-full rounded-xl border border-stone-200 bg-warm px-4 py-2.5 font-lato text-sm text-green-900 outline-none focus:border-green-600"
       >
         {options.map((o) => (
           <option key={o} value={o}>

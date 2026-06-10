@@ -46,7 +46,7 @@ export default function StarRating({
               <StarIcon
                 width={size}
                 height={size}
-                className={active ? "text-amber-400" : "text-stone-200"}
+                className={active ? "text-amber-600" : "text-stone-200"}
                 style={{
                   filter: active ? "drop-shadow(0 1px 2px rgba(200,133,42,0.4))" : "none",
                 }}

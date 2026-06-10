@@ -7,7 +7,6 @@ export default function CTABanner() {
   return (
     <section className="relative overflow-hidden bg-green-900 py-24 text-center text-snow">
       <AnimatedBackground variant="flags" tone="light" />
-      <AnimatedBackground variant="mountains" tone="light" />
       <div className="container-trek relative z-10 px-6">
         <Reveal>
           <p className="eyebrow text-amber-300">Ready When You Are</p>

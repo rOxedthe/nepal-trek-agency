@@ -48,7 +48,7 @@ export default function FaqAccordion() {
         return (
           <div
             key={f.q}
-            className={`overflow-hidden rounded-2xl border bg-snow transition-colors ${isOpen ? "border-amber-400" : "border-stone-200"}`}
+            className={`overflow-hidden rounded-2xl border bg-snow transition-colors ${isOpen ? "border-green-600" : "border-stone-200"}`}
           >
             <button
               onClick={() => setOpen(isOpen ? null : i)}

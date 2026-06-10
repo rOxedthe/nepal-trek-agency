@@ -27,7 +27,7 @@ export default function ReviewStats() {
               <span className="w-12 font-montserrat text-xs text-stone-500">{d.stars} star</span>
               <div className="h-3 flex-1 overflow-hidden rounded-full bg-stone-200">
                 <motion.div
-                  className="h-full rounded-full bg-amber-400"
+                  className="h-full rounded-full bg-amber-600"
                   initial={{ width: 0 }}
                   whileInView={{ width: `${d.percent}%` }}
                   viewport={{ once: true }}

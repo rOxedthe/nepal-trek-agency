@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  PeakIcon,
   FacebookIcon,
   InstagramIcon,
   XIcon,
@@ -47,15 +46,9 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <Link href="/" className="flex items-center gap-2.5">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-400 text-green-900">
-                <PeakIcon width={24} height={24} strokeWidth={1.8} />
-              </span>
-              <span className="leading-none">
-                <span className="block font-playfair text-lg font-bold">Nepal Trek</span>
-                <span className="block font-montserrat text-[10px] uppercase tracking-[0.3em] text-amber-300">
-                  Agency
-                </span>
+            <Link href="/" className="inline-block" aria-label="Nepal Trek Agency home">
+              <span className="flex items-center rounded-xl bg-white px-2.5 py-1.5 shadow-sm">
+                <img src="/logo.jpg" alt="Nepal Trek Agency" className="h-10 w-auto object-contain" />
               </span>
             </Link>
             <p className="mt-5 font-dm text-base text-amber-300">

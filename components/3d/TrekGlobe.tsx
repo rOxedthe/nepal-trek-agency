@@ -221,7 +221,7 @@ function GlobeMesh({
       <mesh>
         <sphereGeometry args={[R, 36, 36]} />
         <meshStandardMaterial
-          color={isZoomed ? "#8B0020" : "#6B0019"}
+          color={isZoomed ? "#1A3F8C" : "#0D2F6B"}
           roughness={0.85}
           metalness={0.1}
         />
@@ -234,7 +234,7 @@ function GlobeMesh({
       <mesh>
         <sphereGeometry args={[R + 0.006, 24, 16]} />
         <meshBasicMaterial
-          color={isZoomed ? "#DC143C" : "#A80026"}
+          color={isZoomed ? "#2563C4" : "#1E52B4"}
           wireframe
           transparent
           opacity={isZoomed ? 0.28 : 0.22}
@@ -253,7 +253,7 @@ function GlobeMesh({
       {!isZoomed && (
         <mesh position={toVec(28.2, 84.5, R + 0.02)}>
           <sphereGeometry args={[0.32, 24, 24]} />
-          <meshBasicMaterial color="#DC143C" transparent opacity={0.25} />
+          <meshBasicMaterial color="#F5821F" transparent opacity={0.25} />
         </mesh>
       )}
 
@@ -275,7 +275,7 @@ function GlobeMesh({
                 <Html center style={{ pointerEvents: "none" }}>
                   <div style={{
                     fontSize: "11px", fontWeight: 700, whiteSpace: "nowrap",
-                    background: "#003893", color: "#ffffff", padding: "3px 8px",
+                    background: "#0D2F6B", color: "#ffffff", padding: "3px 8px",
                     borderRadius: "999px", fontFamily: "Montserrat, sans-serif",
                     pointerEvents: "none", userSelect: "none",
                     boxShadow: "0 2px 6px rgba(0,0,0,0.35)",

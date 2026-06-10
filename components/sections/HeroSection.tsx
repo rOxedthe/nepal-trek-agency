@@ -10,7 +10,7 @@ import { ArrowRight, ChevronDown } from "@/components/ui/Icons";
 const HeroScene = dynamic(() => import("@/components/3d/HeroScene"), {
   ssr: false,
   loading: () => (
-    <div className="absolute inset-0 bg-gradient-to-b from-[#1A0508] via-green-900 to-green-800" />
+    <div className="absolute inset-0 bg-gradient-to-b from-[#071830] via-green-900 to-green-800" />
   ),
 });
 

@@ -29,8 +29,8 @@ export default function AnimatedBackground({
   className = "",
   tone = "dark",
 }: Props) {
-  const stroke = tone === "dark" ? "#4D0014" : "#f8f6f0";
-  const accent = "#003893";
+  const stroke = tone === "dark" ? "#0D2F6B" : "#f8f6f4";
+  const accent = "#F5821F";
 
   return (
     <div
@@ -85,7 +85,7 @@ function Snow({ tone }: { tone: "light" | "dark" }) {
       })),
     [],
   );
-  const color = "#4488FF";
+  const color = "#AACCFF";
   return (
     <>
       {flakes.map((f, i) => (
@@ -108,7 +108,7 @@ function Snow({ tone }: { tone: "light" | "dark" }) {
 }
 
 function Flags() {
-  const colors = ["#DC143C", "#003893", "#F07080", "#4169E1", "#8B0020"];
+  const colors = ["#F5821F", "#1A4FA8", "#2D8A27", "#7B4A1E", "#0D2F6B"];
   const flags = Array.from({ length: 14 });
   return (
     <svg className="absolute left-0 top-6 w-full" viewBox="0 0 1200 90" preserveAspectRatio="none">
@@ -237,7 +237,7 @@ function Pines({ stroke }: { stroke: string }) {
 }
 
 function Clouds({ tone }: { tone: "light" | "dark" }) {
-  const fill = tone === "dark" ? "#4D0014" : "#ffffff";
+  const fill = tone === "dark" ? "#0D2F6B" : "#ffffff";
   const clouds = [
     { top: "8%", dur: 60, delay: 0, scale: 1 },
     { top: "22%", dur: 90, delay: -20, scale: 0.7 },

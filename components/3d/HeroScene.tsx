@@ -106,14 +106,14 @@ export default function HeroScene() {
       gl={{ antialias: false, alpha: true }}
       className="!absolute inset-0"
     >
-      <color attach="background" args={["#1A0508"]} />
-      <fogExp2 attach="fog" args={["#2D0810", 0.06]} />
-      <ambientLight intensity={0.7} color="#FFD0D0" />
-      <directionalLight position={[6, 8, 4]} intensity={1.5} color="#FFE0E0" />
-      <directionalLight position={[-6, 4, -2]} intensity={0.5} color="#C0D0FF" />
+      <color attach="background" args={["#071830"]} />
+      <fogExp2 attach="fog" args={["#0D2040", 0.06]} />
+      <ambientLight intensity={0.7} color="#C8D8FF" />
+      <directionalLight position={[6, 8, 4]} intensity={1.5} color="#FFD8A0" />
+      <directionalLight position={[-6, 4, -2]} intensity={0.5} color="#A0C0FF" />
 
-      <Terrain color="#3D0A14" z={0} />
-      <Terrain color="#2A0610" z={-5} />
+      <Terrain color="#0D2F6B" z={0} />
+      <Terrain color="#071830" z={-5} />
       <SnowField />
       <Rig />
     </Canvas>

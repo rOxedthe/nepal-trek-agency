@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --green-900: #4D0014;
-  --green-800: #6B0019;
-  --green-700: #890020;
-  --green-600: #A80026;
-  --green-500: #C8102E;
+  --green-900: #071830;
+  --green-800: #0D2F6B;
+  --green-700: #1A3F8C;
+  --green-600: #1E52B4;
+  --green-500: #2563C4;
 
-  --amber-600: #DC143C;
-  --amber-500: #C8102E;
-  --amber-400: #FFFFFF;
-  --amber-300: #FFE8EC;
+  --amber-600: #C85E08;
+  --amber-500: #E07010;
+  --amber-400: #F5821F;
+  --amber-300: #FDEBD0;
 
-  --sky-100: #EAF0FF;
-  --sky-200: #C5D5FF;
+  --sky-100: #EAF3FF;
+  --sky-200: #C5DCFF;
   --snow-white: #FFFFFF;
   --warm-white: #FAFAFA;
 
-  --earth-900: #1A0508;
-  --earth-700: #500015;
-  --earth-400: #8B0020;
+  --earth-900: #3A2010;
+  --earth-700: #7B4A1E;
+  --earth-400: #C4874A;
 
-  --stone-100: #F5F2F2;
-  --stone-200: #EDE0E0;
-  --stone-500: #8A7070;
-  --stone-800: #3D2222;
-  --stone-900: #1C0F0F;
+  --stone-100: #F5F2EE;
+  --stone-200: #EDE8E0;
+  --stone-500: #8A7060;
+  --stone-800: #3D2A1A;
+  --stone-900: #1C1008;
 }
 
 @layer base {
@@ -45,7 +45,7 @@
   }
 
   ::selection {
-    background: var(--amber-600);
+    background: var(--amber-400);
     color: #ffffff;
   }
 
@@ -84,16 +84,16 @@
     @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 font-montserrat text-sm font-semibold tracking-wide transition-all duration-300;
   }
 
-  /* White button — primary CTA on dark (crimson) backgrounds */
+  /* Orange button — primary CTA on dark (navy) backgrounds */
   .btn-amber {
-    background: #FFFFFF;
-    color: var(--green-800);
-    box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.32);
+    background: var(--amber-400);
+    color: #ffffff;
+    box-shadow: 0 14px 30px -12px rgba(245,130,31,0.5);
   }
   .btn-amber:hover {
     transform: scale(1.03) translateY(-1px);
-    background: #F5EAEA;
-    box-shadow: 0 20px 38px -12px rgba(0, 0, 0, 0.4);
+    background: var(--amber-500);
+    box-shadow: 0 20px 38px -12px rgba(245,130,31,0.6);
   }
 
   .btn-outline {
@@ -106,7 +106,7 @@
     color: #ffffff;
   }
 
-  /* Red button — secondary CTA on white/light backgrounds */
+  /* Blue button — secondary CTA on white/light backgrounds */
   .btn-green {
     background: var(--green-500);
     color: var(--snow-white);
@@ -161,9 +161,9 @@
   .text-pretty {
     text-wrap: pretty;
   }
-  /* Blue gradient for hero highlighted text — the minimal blue accent */
+  /* Blue-to-orange gradient for hero highlighted text */
   .gradient-text {
-    background: linear-gradient(120deg, #5B8FFF, #003893);
+    background: linear-gradient(120deg, #F5821F, #C85E08);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
